@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.scss">
+</head>
+
+<body>
+  <div id="clock-container">
+    <div id="input-settings"></div>
+    <div class="clock">
+      <div id="timer-controls">
+        <div id="play"></div>
+        <div id="pause"></div>
+        <div id="stop"></div>
+      </div>
+      <span class="hour"></span>
+      <span class="minute"></span>
+      <span class="second"></span>
+      <span class="dot"></span>
+      <ul id="ticks"></ul>
+    </div>
+    <div id="timer">
+      <div>Break in <span id="time">25:00</span> minutes!</div>
+    </div>
+  </div>
+  <form id="login">
+  </form>
+  <form id="timer-input">
+    <div id="login-container">
+      <p>Login to save your timers and other settings</p>
+      <input type="text" id="email" form="login" placeholder="Email">
+      <input type="password" id="password" form="login" placeholder="Password">
+      <input type="submit" value="Log In" form="login">
+      <p>You don't have an acount yet? Click <a id="sign-up-link" href="#">here</a> to sign up!</p>
+    </div>
+    <div class="time-input-container">
+      <div>
+        <label for="work-time">Activity</label>
+        <input type="number" id="work-time" value="5">
+      </div>
+      <div>
+        <label for="break-time">Break</label>
+        <input type="number" id="break-time" value="5">
+      </div>
+      <div>
+        <label for="longBreak-time">Long Break</label>
+        <input type="number" id="longBreak-time" value="1">
+      </div>
+    </div>
+  </form>
+
+
+  <form id="sign-up-form">
+    <span id="close-sign-up" class="exit-btn">X</span>
+    <input type="email" id="sign-up-email">
+    <input type="password" id="sign-up-password">
+    <input type="password" id="sign-up-pasword-confirm">
+    <input type="submit" value="Sign Up">
+  </form>
+
+  <script src="./main.ts"></script>
+</body>
+
+</html>

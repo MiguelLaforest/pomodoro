@@ -1,0 +1,19 @@
+{"buildOnSave": false,
+    "compileOnSave": false,
+    "compilerOptions":
+    {
+        "allowJs": true,
+        "jsx": "react",
+        // "noImplicitAny": true,
+        "module": "commonjs",
+        "outDir": "dist/client/ts",
+        "removeComments": true,
+        "sourceMap": false,
+        "target": "esnext"
+    },
+    "exclude":
+    [
+        "node_modules",
+        "dist",
+        "typings"
+    ]}

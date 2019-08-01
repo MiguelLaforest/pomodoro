@@ -1,0 +1,327 @@
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: $size/2;
+}
+
+@mixin inCorner($corner, $m1, $m2) {
+  position: absolute;
+
+  @if ($corner=="top left") {
+    top: $m1;
+    left: $m2;
+  }
+
+  @else if ($corner=="top right") {
+    top: $m1;
+    right: $m2;
+  }
+
+  @else if ($corner=="bottom left") {
+    bottom: $m1;
+    left: $m2;
+  }
+
+  @else if ($corner=="bottom right") {
+    right: $m2;
+    bottom: $m1;
+  }
+}
+
+@mixin flex-even($dir:row, $align:initial) {
+  display: flex;
+  align-items: $align;
+  flex-direction: $dir;
+  justify-content: space-evenly;
+}
+
+@mixin flex-col() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin X-Y($X, $Y, $R:null, $B:null) {
+  position: absolute;
+  top: $Y;
+  right: $R;
+  bottom: $B;
+  left: $X;
+
+  @if $R==null and $B==null {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin size($W, $H) {
+  width: $W;
+  height: $H;
+}
+
+@mixin responsive($W:500px) {
+  @media only screen and(min-width: $W) {
+    @content;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  @include size(100vw, 100vh);
+}
+
+body {
+  position: relative;
+  background: #d9d7dd;
+  overflow: hidden;
+  @include flex-even;
+  @include square(100%);
+}
+
+#input-settings {
+  background-image: url(./asset/icons/baseline-settings-20px.svg);
+  background-repeat: no-repeat;
+  @include square(24px);
+  @include inCorner("top right", 1rem, 1rem);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#clock-container {
+  position: relative;
+  background: #d9d7dd;
+  padding: 1rem;
+  @include square(100%);
+  @include flex-even(column, center);
+}
+
+#login {
+  width: 0;
+  text-align: center;
+  @include flex-col();
+
+  &.open {
+    display: flex;
+  }
+}
+
+#login-container {
+  margin: 0 auto;
+  width: 80%;
+  height: 25%;
+  @include flex-even(column);
+}
+
+#timer-input {
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.651);
+  overflow: hidden;
+  transition: all ease-out 250ms;
+  color: white;
+  @include flex-col();
+  @include size(0, 100vh);
+
+  .time-input-container {
+    @include flex-even(column);
+    @include size(100%, 20%);
+
+    div {
+      width: 100%;
+      @include flex-even();
+    }
+  }
+
+  input[type="number"] {
+    width: 20%;
+    text-align: center;
+  }
+
+  label {
+    width: 50%;
+    text-align: left;
+  }
+
+  &.open {
+    width: 350px;
+    transition: all ease-in 250ms;
+  }
+}
+
+.clock {
+  position: relative;
+  width: 50vw;
+  min-width: 150px;
+  max-width: 800px;
+  height: 50vw;
+  min-height: 150px;
+  max-height: 800px;
+  border: 5px solid white;
+  border-radius: 100%;
+  box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  font-family: "Montserrat";
+}
+
+#timer-controls {
+  z-index: 2;
+  @include flex-even;
+  @include X-Y(50%, 30%);
+  @include size(30%, 10%);
+}
+
+#pause-btn {
+  display: none;
+}
+
+.minute,
+.hour,
+.second {
+  z-index: 1;
+  margin: auto;
+  height: 50%;
+  transform: rotate(0deg);
+  transform-origin: bottom center;
+  @include X-Y(0, -50%, 0, 0);
+}
+
+.hour {
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.minute {
+  width: 3px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.second {
+  width: 2px;
+  background: #ff4b3e5e;
+}
+
+.dot {
+  z-index: 1;
+  margin: auto;
+  border: 2px solid #1b1b1b;
+  background: white;
+  @include X-Y(0, 0, 0, 0);
+  @include circle(12px);
+}
+
+#ticks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 0;
+  list-style: none;
+  transform-origin: center;
+}
+
+.slices {
+  margin: auto;
+  transform-origin: bottom center;
+  @include X-Y(0, -50%, 0, 0);
+  @include size(1px, 50%);
+}
+
+.work {
+  border-top: 2.5px solid rgba(255, 0, 0, 0.295);
+
+  width: 0.25%;
+
+  @include responsive {}
+}
+
+.break {
+  border-top: 2.5px solid rgba(51, 255, 0, 0.295);
+  width: 0.25%;
+
+}
+
+.normal {
+  border-top: 2.5px solid rgba(0, 0, 0, 0.295);
+  width: 0.25%;
+
+}
+
+.small {
+  border-width: 5px;
+  width: 0.5%;
+}
+
+.medium {
+  border-width: 15px;
+  width: 0.5%;
+}
+
+.long {
+  border-width: 25px;
+  width: 0.5%;
+}
+
+
+#sign-up-form {
+  opacity: 0;
+  z-index: 40;
+  background-color: black;
+
+  transition: all ease-in 500ms;
+  @include square(50%);
+  @include flex-col();
+  @include X-Y(50%, -50%);
+
+  input:not(:last-of-type) {
+    margin-bottom: 1rem;
+  }
+
+  &.open {
+    opacity: 1;
+    transition: all ease-out 500ms;
+    @include X-Y(50%, 50%);
+  }
+}
+
+.exit-btn {
+  color: red;
+  @include inCorner("top right", 1rem, 1rem);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#play,
+#pause,
+#stop {
+  @include square(24px);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#play {
+  background-image: url(./asset/icons/baseline-play_arrow-24px.svg);
+}
+
+#pause {
+  display: none;
+  background-image: url(./asset/icons/baseline-pause-24px.svg);
+}
+
+#stop {
+  display: none;
+  background-image: url(./asset/icons/baseline-stop-24px.svg);
+}

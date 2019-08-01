@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "sass": "^1.21.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "helpers": "0.0.6",
+    "jquery": "^3.4.1"
+  },
+  "scripts": {
+    "start": "parcel index.html --public-url ./"
+  }
+}
