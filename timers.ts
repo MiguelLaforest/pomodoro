@@ -92,9 +92,9 @@ class PomodoroTimer {
     }
   };
 
-  startActivity = () => {
+  startActivity() {
     this.timer = setInterval(this.activityRunning, 1000);
-  };
+  }
 
   stopActivity = () => {
     clearInterval(this.timer);
