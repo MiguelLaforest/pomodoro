@@ -1,4 +1,4 @@
-class PomodoroTimer {
+export default class PomodoroTimer {
   times = {
     activity: 0,
     break: 0,
@@ -144,7 +144,6 @@ class PomodoroTimer {
     }
   };
 }
-export { PomodoroTimer };
 
 // class PomodoroTimer {
 //   state;
